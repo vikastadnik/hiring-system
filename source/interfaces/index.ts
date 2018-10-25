@@ -3,8 +3,9 @@ export interface IState {
 }
 
 export interface IPersonDTO {
+  readonly uuid: string;
   readonly name: string;
   readonly picture: string;
   readonly city: string;
-  readonly stage: string;
+  stage: string;
 }

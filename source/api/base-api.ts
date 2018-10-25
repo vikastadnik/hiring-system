@@ -10,8 +10,9 @@ export class BaseApi {
       .then((response: AxiosResponse): object => {
         return response.data.results.reduce((people: IPersonDTO[], currentPerson: any) => {
           const person: IPersonDTO = {
-            name: `${currentPerson.name.title} ${currentPerson.name.first} ${currentPerson.name.last}`,
-            picture: currentPerson.picture,
+            uuid: currentPerson.login.uuid,
+            name: `${currentPerson.name.first} ${currentPerson.name.last}`,
+            picture: currentPerson.picture.thumbnail,
             city: currentPerson.location.city,
             stage: HIRING_STAGES.APPLIED
           };

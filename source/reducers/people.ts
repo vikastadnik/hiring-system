@@ -1,7 +1,8 @@
 import * as Actions from '../actions';
 import { IPersonDTO } from '../interfaces';
+import { IUpdatePersonStage } from '../actions';
 
-export type ActionType = Actions.ISetPeopleData;
+export type ActionType = Actions.ISetPeopleData & Actions.IUpdatePersonStage;
 const initial: IPersonDTO[] = [];
 
 export function people(
@@ -10,8 +11,15 @@ export function people(
 ): IPersonDTO[] {
   switch (action.type) {
     case Actions.SET_PEOPLE_DATA:
-      return { ...action.people };
+      return action.people;
+    case Actions.CHANGE_PERSON_STAGE:
+      return updatePeopleList(action, state);
     default:
       return state;
   }
+}
+
+export function updatePeopleList(action: IUpdatePersonStage, state: IPersonDTO[]): IPersonDTO[] {
+  const slicedPeopleList: IPersonDTO[] = state.filter((person: IPersonDTO) => person.uuid !== action.person.uuid);
+  return [...slicedPeopleList, action.person];
 }
