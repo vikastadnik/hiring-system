@@ -16,23 +16,10 @@ export interface IPeopleListStoreProps {
 
 export function mapStateToProps(state: IState, stage: IStageOwnProps): IPeopleListStoreProps {
   const people: IPersonDTO[] = state.people.filter((person: IPersonDTO) => {
-    if (state.filters[FILTER_TYPES.CITY] && state.filters[FILTER_TYPES.NAME]) {
-      return person.stage === stage.title
-        && person[FILTER_TYPES.CITY] === state.filters[FILTER_TYPES.CITY]
-        && person[FILTER_TYPES.NAME] === state.filters[FILTER_TYPES.NAME];
-    }
 
-    if (state.filters[FILTER_TYPES.CITY] && !state.filters[FILTER_TYPES.NAME]) {
-      return person.stage === stage.title
-        && person[FILTER_TYPES.CITY] === state.filters[FILTER_TYPES.CITY];
-    }
-
-    if (!state.filters[FILTER_TYPES.CITY] && state.filters[FILTER_TYPES.NAME]) {
-      return person.stage === stage.title
-        && person[FILTER_TYPES.NAME] === state.filters[FILTER_TYPES.NAME];
-    }
-
-    return person.stage === stage.title;
+    return  person.stage === stage.title
+      && !(state.filters[FILTER_TYPES.CITY] && person[FILTER_TYPES.CITY] !== state.filters[FILTER_TYPES.CITY])
+      && !(state.filters[FILTER_TYPES.NAME] && person[FILTER_TYPES.NAME] !== state.filters[FILTER_TYPES.NAME]);
   });
   return {people, stage: stage.title};
 }

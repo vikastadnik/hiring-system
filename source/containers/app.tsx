@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Redux from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { createLogger } from 'redux-logger';
 import { AppContentContainer } from './app-content';
 import { Main } from '../reducers';
@@ -18,9 +18,9 @@ export class App extends React.Component<{}, IAppState> {
   public render(): JSX.Element {
     return (
       <Provider store={this.state.store}>
-        <BrowserRouter>
-          <AppContentContainer />
-        </BrowserRouter>
+        <Router>
+          <Route path="/" component={AppContentContainer} />
+        </Router>
       </Provider>
     );
   }

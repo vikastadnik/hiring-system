@@ -23,12 +23,12 @@ export class ProfileCard extends React.Component<IProps> {
 
   public getNextStageButton(): JSX.Element {
     const {stage} = this.props.personData;
-    if (stage.toUpperCase() === HIRING_STAGES.HIRED) {
+    if (stage === HIRING_STAGES.HIRED) {
       return null;
     }
     return (
       <button
-        className="ui button"
+        className="ui basic green button"
         onClick={this.onChangeHiringStage}
         data-direction="next"
       >
@@ -44,7 +44,7 @@ export class ProfileCard extends React.Component<IProps> {
     }
     return (
       <button
-        className="ui  button"
+        className="ui basic green button"
         onClick={this.onChangeHiringStage}
         data-direction="prev"
       >
@@ -54,13 +54,24 @@ export class ProfileCard extends React.Component<IProps> {
   }
 
   public render(): JSX.Element {
-    const {name, picture} = this.props.personData;
+    const {name, picture, city} = this.props.personData;
     return (
-      <div className="person">
-        <img className="photo" src={picture}/>
-        <div className="name">{name}</div>
-        {this.getPrevStageButton()}
-        {this.getNextStageButton()}
+      <div className="ui cards">
+        <div className="card">
+          <div className="content">
+            <img className="left floated ui tiny image" src={picture}/>
+            <div className="header">
+              {name}
+            </div>
+            <div className="meta"> <b> {city}</b> </div>
+          </div>
+          <div className="extra content">
+            <div className="ui two buttons">
+              {this.getPrevStageButton()}
+              {this.getNextStageButton()}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
