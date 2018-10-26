@@ -3,6 +3,7 @@ import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
 import { IPersonDTO, IState } from '../../interfaces';
 import { Stage } from './stage';
+import { FILTER_TYPES } from '../../enums';
 
 export interface IStageOwnProps {
   readonly title: string;
@@ -15,7 +16,23 @@ export interface IPeopleListStoreProps {
 
 export function mapStateToProps(state: IState, stage: IStageOwnProps): IPeopleListStoreProps {
   const people: IPersonDTO[] = state.people.filter((person: IPersonDTO) => {
-    return person.stage.toUpperCase() === stage.title.toUpperCase();
+    if (state.filters[FILTER_TYPES.CITY] && state.filters[FILTER_TYPES.NAME]) {
+      return person.stage === stage.title
+        && person[FILTER_TYPES.CITY] === state.filters[FILTER_TYPES.CITY]
+        && person[FILTER_TYPES.NAME] === state.filters[FILTER_TYPES.NAME];
+    }
+
+    if (state.filters[FILTER_TYPES.CITY] && !state.filters[FILTER_TYPES.NAME]) {
+      return person.stage === stage.title
+        && person[FILTER_TYPES.CITY] === state.filters[FILTER_TYPES.CITY];
+    }
+
+    if (!state.filters[FILTER_TYPES.CITY] && state.filters[FILTER_TYPES.NAME]) {
+      return person.stage === stage.title
+        && person[FILTER_TYPES.NAME] === state.filters[FILTER_TYPES.NAME];
+    }
+
+    return person.stage === stage.title;
   });
   return {people, stage: stage.title};
 }
