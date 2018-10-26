@@ -12,7 +12,7 @@ export class BaseApi {
           const person: IPersonDTO = {
             uuid: currentPerson.login.uuid,
             name: `${currentPerson.name.first} ${currentPerson.name.last}`,
-            picture: currentPerson.picture.thumbnail,
+            picture: currentPerson.picture.medium,
             city: currentPerson.location.city,
             stage: HIRING_STAGES.APPLIED
           };

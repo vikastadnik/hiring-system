@@ -1,6 +1,5 @@
 import * as Actions from '../actions';
 import { IPersonDTO } from '../interfaces';
-import { IUpdatePersonStage } from '../actions';
 
 export type ActionType = Actions.ISetPeopleData & Actions.IUpdatePersonStage;
 const initial: IPersonDTO[] = [];
@@ -19,7 +18,7 @@ export function people(
   }
 }
 
-export function updatePeopleList(action: IUpdatePersonStage, state: IPersonDTO[]): IPersonDTO[] {
+export function updatePeopleList(action: Actions.IUpdatePersonStage, state: IPersonDTO[]): IPersonDTO[] {
   const slicedPeopleList: IPersonDTO[] = state.filter((person: IPersonDTO) => person.uuid !== action.person.uuid);
   return [...slicedPeopleList, action.person];
 }

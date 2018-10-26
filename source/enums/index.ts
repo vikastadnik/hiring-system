@@ -1,7 +1,7 @@
 export enum HIRING_STAGES {
-  APPLIED = 'Applied',
-  INTERVIEWING = 'Interviewing',
-  HIRED = 'Hired',
+  APPLIED = 'APPLIED',
+  INTERVIEWING = 'INTERVIEWING',
+  HIRED = 'HIRED',
 }
 export enum HIRING_DIRECTIONS {
   NEXT = 'NEXT',

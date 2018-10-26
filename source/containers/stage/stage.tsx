@@ -12,7 +12,7 @@ export class Stage extends React.Component<IPeopleListConnectedProps> {
   }
 
   public onChangeHiringStage(uuid: string, stage: string): void {
-    const person: IPersonDTO = this.props.people.find((person: IPersonDTO) => person.uuid === uuid);
+    const person: IPersonDTO = this.props.people.find((currentPerson: IPersonDTO) => currentPerson.uuid === uuid);
     this.props.dispatch(Actions.updatePersonStage({...person, stage}));
   }
 

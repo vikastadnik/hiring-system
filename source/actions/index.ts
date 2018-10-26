@@ -16,6 +16,6 @@ export function setPeopleData(people: IPersonDTO[]): ISetPeopleData {
   return { type: SET_PEOPLE_DATA, people };
 }
 
-export function updatePersonStage(person: IPersonDTO):IUpdatePersonStage {
-  return { type: CHANGE_PERSON_STAGE, person}
+export function updatePersonStage(person: IPersonDTO): IUpdatePersonStage {
+  return { type: CHANGE_PERSON_STAGE, person };
 }

@@ -4,7 +4,7 @@ import { IPersonDTO } from '../../interfaces';
 import { BaseApi } from '../../api';
 import { AxiosError } from 'axios';
 import * as Actions from '../../actions/index';
-import { StageContainer } from '../stage/stage-container'
+import { StageContainer } from '../stage/stage-container';
 import { HIRING_STAGES } from '../../enums';
 
 export class AppContent extends React.Component<IAppContentConnectProps, IState> {
@@ -29,11 +29,17 @@ export class AppContent extends React.Component<IAppContentConnectProps, IState>
 
   public render(): JSX.Element {
     return (
-      <React.Fragment>
-        <StageContainer title={HIRING_STAGES.APPLIED}/>
-        <StageContainer title={HIRING_STAGES.INTERVIEWING}/>
-        <StageContainer title={HIRING_STAGES.HIRED}/>
-      </React.Fragment>
+      <div className="ui three column doubling stackable grid container">
+        <div className="column">
+          <StageContainer title={HIRING_STAGES.APPLIED} />
+        </div>
+        <div className="column">
+          <StageContainer title={HIRING_STAGES.INTERVIEWING} />
+        </div>
+        <div className="column">
+          <StageContainer title={HIRING_STAGES.HIRED} />
+        </div>
+      </div>
     );
   }
 }

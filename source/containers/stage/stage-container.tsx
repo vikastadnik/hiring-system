@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
-import {IPersonDTO, IState} from '../../interfaces';
-import {Stage} from './stage';
+import { IPersonDTO, IState } from '../../interfaces';
+import { Stage } from './stage';
 
 export interface IStageOwnProps {
   readonly title: string;
