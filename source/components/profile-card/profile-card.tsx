@@ -9,15 +9,15 @@ export class ProfileCard extends React.Component<IProps> {
     this.onChangeHiringStage = this.onChangeHiringStage.bind(this);
   }
 
-  public onChangeHiringStage(e): void {
+  public onChangeHiringStage(e: React.MouseEvent<HTMLButtonElement>): void {
     e.preventDefault();
-    const excistingStages: string[] = Object.keys(HIRING_STAGES);
-    const stageIndex: number = excistingStages.indexOf(this.props.personData.stage.toUpperCase());
-    const {direction} = e.target.dataset;
+    const existingStages: string[] = Object.keys(HIRING_STAGES);
+    const stageIndex: number = existingStages.indexOf(this.props.personData.stage.toUpperCase());
+    const {direction} = e.currentTarget.dataset;
     if (direction.toUpperCase() === HIRING_DIRECTIONS.NEXT) {
-      this.props.onChangeHiringStage(this.props.personData.uuid, excistingStages[stageIndex + 1]);
+      this.props.onChangeHiringStage(this.props.personData.uuid, existingStages[stageIndex + 1]);
     } else if (direction.toUpperCase() === HIRING_DIRECTIONS.PREV) {
-      this.props.onChangeHiringStage(this.props.personData.uuid, excistingStages[stageIndex - 1]);
+      this.props.onChangeHiringStage(this.props.personData.uuid, existingStages[stageIndex - 1]);
     }
   }
 

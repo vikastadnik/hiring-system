@@ -1,17 +1,17 @@
 import * as React from 'react';
 import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
-import { RouterConfigComponentProps } from 'react-router-config';
+import { RouteConfigComponentProps } from 'react-router-config';
 import { IPersonDTO, IState } from '../../interfaces';
 import { Filter } from './filter';
 
 export interface IFilterProps {
   readonly title: string;
   readonly type: string;
-  readonly history:  Partial<RouterConfigComponentProps<{}>>;
+  readonly history: Partial<RouteConfigComponentProps<{}>>;
 }
 
-export interface IFilterStoreProps  extends IFilterProps{
+export interface IFilterStoreProps extends IFilterProps {
   readonly value: string;
   readonly people: IPersonDTO[];
 }

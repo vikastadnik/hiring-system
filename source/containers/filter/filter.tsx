@@ -1,9 +1,8 @@
 import * as React from 'react';
 import * as Actions from '../../actions';
-import * as qs from 'query-string';
 import { IFilterConnectedProps as IProps } from './filter-container';
 import { IPersonDTO } from '../../interfaces';
-import { FILTER_TYPES } from "../../enums";
+import { updateQueryStringParameter } from '../../functions';
 
 export class Filter extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -22,33 +21,23 @@ export class Filter extends React.Component<IProps, IState> {
     if (this.props.people !== previous.people && this.props.people.length) {
       let availableValues: string[] = this.props.people.map((person: IPersonDTO) => person[this.props.type]);
       availableValues = [...new Set(availableValues)];
+      availableValues.sort();
       this.setState({availableValues});
     }
   }
 
-  public onChangeFilterValue(e): void {
-    const selectedValue: string = e.target.value;
+  public onChangeFilterValue(e: React.ChangeEvent<HTMLSelectElement>): void {
+    const selectedValue: string = e.currentTarget.value;
     this.setState({selectedValue});
     this.props.dispatch(Actions.setFilter({title: this.props.type, value: selectedValue}));
+    const currentSearchParams: string  = this.props.history.location.search;
+    const search: string = updateQueryStringParameter(currentSearchParams, this.props.type, selectedValue);
 
-    const {city, name} = qs.parse(this.props.history.location.search);
-    let search: string = ``;
-    if (this.props.type === FILTER_TYPES.CITY && name) {
-      search = selectedValue
-        ? `?${this.props.type}=${selectedValue}&name=${name}`
-        : `?name=${name}`;
-    } else if (this.props.type === FILTER_TYPES.NAME && city) {
-      search = selectedValue
-        ? `?${this.props.type}=${selectedValue}&city=${city}`
-        : `?city=${city}`;
-    } else if (selectedValue) {
-      search = `?${this.props.type}=${selectedValue}`;
-    }
-
+    // @ts-ignore
     this.props.history.push({
       search,
-      pathname: '/',
-    })
+      pathname: '/'
+    });
   }
 
   public render(): JSX.Element {

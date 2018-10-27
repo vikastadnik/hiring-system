@@ -42,7 +42,6 @@
     "no-eval": true,
     "no-shadowed-variable": true,
     "no-switch-case-fall-through": true,
-    "no-unused-expression": true,
     "no-var-keyword": true,
     "switch-default": true,
     "triple-equals": true,
@@ -126,7 +125,6 @@
       true,
       "never"
     ],
-    "jsx-use-translation-function": true,
     "jsx-wrap-multiline": true
   }
 }
