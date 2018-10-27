@@ -11,6 +11,7 @@ Also available filters
 * city
 
 Filter states are persistent between the browser tabs.
+To set set static data for application
 
 ### Requirements
 For development, you will need Node.js and npm or yarn installed on your environement.
@@ -19,6 +20,7 @@ For development, you will need Node.js and npm or yarn installed on your environ
 `$ git clone https://github.com/vikastadnik/hiring-system.git`
 
 `$ cd hiring-system`
+
 `$ npm install` or `$ yarn install`
 
 ### Development
@@ -41,6 +43,12 @@ This will create a folder called dist, into which the required files will be cre
 To create a production instance of this project, run the following task:
 
 `$ npm run build-target` or `yarn run build-target`
+
+### Run test
+
+To start tests, run the following task
+
+`$ npm run test-s` or `yarn run test -s`
 
 ___
 
