@@ -48,7 +48,7 @@ To create a production instance of this project, run the following task:
 
 To start tests, run the following task
 
-`$ npm run test-s` or `yarn run test -s`
+`$ npm run test -s` or `yarn run test -s`
 
 ___
 
