@@ -11,7 +11,10 @@ Also available filters
 * city
 
 Filter states are persistent between the browser tabs.
-To set set static data for application
+
+To set static data for application you should change line 15 of BaseApi.ts file to 
+
+`return data.results.reduce((people: IPersonDTO[], currentPerson: any) => {`
 
 ### Requirements
 For development, you will need Node.js and npm or yarn installed on your environement.
